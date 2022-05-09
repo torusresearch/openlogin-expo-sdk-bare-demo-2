@@ -10,10 +10,10 @@
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx"
   },
   "dependencies": {
-    "openlogin-expo-sdk": "torusresearch/openlogin-expo-sdk#feat/rn-webbrowser-integration",
     "react": "17.0.2",
     "react-native": "0.68.1",
-    "react-native-web-browser": "torusresearch/react-native-web-browser#chore/rc-20220505"
+    "react-native-web-browser": "torusresearch/react-native-web-browser#chore/rc-20220505",
+    "web3auth-react-native-sdk": "torusresearch/openlogin-expo-sdk#feat/rn-webbrowser-integration"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",

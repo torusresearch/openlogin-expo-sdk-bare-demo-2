@@ -27,23 +27,25 @@ import {
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
 import * as WebBrowser from 'react-native-web-browser';
-import OpenLogin, { LoginProvider, Network } from 'openlogin-expo-sdk';
-import { URL } from 'react-native-url-polyfill';
+import Web3Auth, {
+  LOGIN_PROVIDER,
+  OPENLOGIN_NETWORK,
+} from 'web3auth-react-native-sdk';
 const scheme = 'openloginexposdkexampleexpo';
-const resolvedRedirectUrl =  new URL(`${scheme}://openlogin`)
+const resolvedRedirectUrl = `${scheme}://openlogin`;
 
 export default function App() {
   const [key, setKey] = useState('');
   const [errorMsg, setErrorMsg] = useState('');
   const login = async () => {
     try {
-      const openlogin = new OpenLogin(WebBrowser, {
+      const openlogin = new Web3Auth(WebBrowser, {
         clientId:
           'BC5bANkU4-fil7C5s1uKzRfF0VGqbuaxDQiLnQ8WgF7SEA32lGegAhu7dk4dZf3Rk397blIvfWytXwsRvs9dOaQ',
-        network: Network.TESTNET,
+        network: OPENLOGIN_NETWORK.TESTNET,
       });
       const state = await openlogin.login({
-        loginProvider: LoginProvider.GOOGLE,
+        loginProvider: LOGIN_PROVIDER.GOOGLE,
         redirectUrl: resolvedRedirectUrl,
       });
       setKey(state.privKey || 'no key');
@@ -56,7 +58,7 @@ export default function App() {
     <View style={styles.container}>
       <Text>Key: {key}</Text>
       <Text>Error: {errorMsg}</Text>
-      <Text>Linking URL: {resolvedRedirectUrl.href}</Text>
+      <Text>Linking URL: {resolvedRedirectUrl}</Text>
       <Button title="Login with OpenLogin" onPress={login} />
       <StatusBar barStyle="default" />
     </View>
